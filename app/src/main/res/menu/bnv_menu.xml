@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bm_home"
+        android:icon="@drawable/ic_home"
+        android:title="首页" />
+    <item
+        android:id="@+id/bm_category"
+        android:icon="@drawable/ic_category"
+        android:title="分类" />
+    <item
+        android:id="@+id/bm_cart"
+        android:icon="@drawable/ic_shopping_cart"
+        android:title="购物车" />
+    <item
+        android:id="@+id/bm_my"
+        android:icon="@drawable/ic_mine"
+        android:title="我的" />
+</menu>

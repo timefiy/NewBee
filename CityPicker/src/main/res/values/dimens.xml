@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--标题栏高度-->
+    <dimen name="title_height_for_city_pick_bottom_sheet_dialog_fragment">40dp</dimen>
+    <!--item高度-->
+    <dimen name="item_height_for_city_pick_bottom_sheet_dialog_fragment">40dp</dimen>
+</resources>

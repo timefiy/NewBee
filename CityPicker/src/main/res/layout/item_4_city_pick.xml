@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_address_for_city_pick"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_height_for_city_pick_bottom_sheet_dialog_fragment"
+    android:background="@drawable/selector_for_city_picker_dialog"
+    android:gravity="center"
+    android:textColor="@color/black"
+    tools:text="重庆市"/>
