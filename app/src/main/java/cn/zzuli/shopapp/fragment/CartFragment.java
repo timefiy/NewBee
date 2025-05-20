@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import cn.zzuli.shopapp.R;
-
+import com.example.shoppingcart.R.*;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CartFragment#newInstance} factory method to
@@ -61,6 +61,7 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        //替换xml布局文件为ShoppingCart中的 nogoods.xml
+        return inflater.inflate(layout.nogoods, container, false);
     }
 }
