@@ -259,7 +259,7 @@ public class HomeFragment extends Fragment {
 //                        Log.e("HTTP_ERROR", "Error Response: " + errorResponse.toString());
 //                    }
                 } catch (Exception e) {
-                    Log.e("NETWORK_ERROR", "Network request failed: " + e.getMessage());
+//                    Log.e("NETWORK_ERROR", "Network request failed: " + e.getMessage());
                     e.printStackTrace();
                     // 切换到主线程显示错误信息
                     requireActivity().runOnUiThread(new Runnable() {
@@ -315,13 +315,13 @@ public class HomeFragment extends Fragment {
                         List<Carousel> carouselList = data.getCarousels();
                         if (carouselList != null) {
                             carousels = carouselList;
-                            Log.d("JSON", "Carousels count: " + carouselList.size());
+//                            Log.d("JSON", "Carousels count: " + carouselList.size());
                         }
                         
                         List<Goods> hotGoodsList = data.getHotGoodses();
                         if (hotGoodsList != null) {
                             hotGoodses = hotGoodsList;
-                            Log.d("JSON", "Hot goods count: " + hotGoodsList.size());
+//                            Log.d("JSON", "Hot goods count: " + hotGoodsList.size());
                             // 更新热门商品 GridView
                             updateHotGoodsGridView();
                         }
@@ -338,7 +338,7 @@ public class HomeFragment extends Fragment {
                         List<Goods> recommendGoodsList = data.getRecommendGoodses();
                         if (recommendGoodsList != null) {
                             recommendGoodses = recommendGoodsList;
-                            Log.d("JSON", "Recommend goods count: " + recommendGoodsList.size());
+//                            Log.d("JSON", "Recommend goods count: " + recommendGoodsList.size());
                             // 更新推荐商品 GridView
                             updateRecommendGoodsGridView();
                         }
