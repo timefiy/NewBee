@@ -216,6 +216,7 @@ public class RegisterActivity extends AppCompatActivity {
             btn_register.setText("登陆");
             tv_switch.setText("去注册");
         }else{
+
             tv_title.setText("注册");
             btn_register.setText("注册");
             tv_switch.setText("去登陆");
