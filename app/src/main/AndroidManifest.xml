@@ -23,6 +23,9 @@
         <activity android:name=".NewAddressActivity"
             android:exported="false"/>
         <activity
+            android:name=".AboutUsActivity"
+            android:exported="false" />
+        <activity
             android:name=".SearchActivity"
             android:exported="false"/>
         <activity
