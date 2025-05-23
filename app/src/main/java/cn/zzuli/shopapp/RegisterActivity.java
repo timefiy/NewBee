@@ -35,8 +35,11 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText et_name,et_pwd;
     private Button btn_register;
     private boolean isLogin=true;
-    private String str="http://115.158.64.129:28019/api/v1/user/register";
-    private String strLogin="http://115.158.64.129:28019/api/v1/user/login";
+
+    private final String str="http://115.158.64.129:28019/api/v1/user/register";
+    private final String strLogin="http://115.158.64.129:28019/api/v1/user/login";
+
+    // 用于在子线程完成后更新UI
     private Handler handler=new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -54,7 +57,10 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+
+        // 加载布局
         setContentView(R.layout.activity_register);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
