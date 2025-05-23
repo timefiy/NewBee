@@ -1,12 +1,17 @@
 package cn.zzuli.shopapp;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -37,6 +42,9 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
     private Address address;
     private List<Address> list = new ArrayList<>();
     private AddressAdapter adapter;
+    private ActivityResultLauncher<Intent> addAddressLauncher;
+    private ActivityResultLauncher<Intent> editAddressLauncher;
+    private Intent it;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +56,14 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
             return insets;
         });
 
+        SharedPreferences info = getSharedPreferences("info", MODE_PRIVATE);
+        token = info.getString("token", "");
+        System.out.println(token);
+        if(token==null){
+            Intent intent = new Intent(AddressActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        }
+
         RecyclerView recyclerView = findViewById(R.id.rv_address);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -56,10 +72,10 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
         toAddress();
 
         adapter.setOnReviseClickListener((addressId, userId) -> {
-            Intent intent = new Intent(this, ReviseAddressActivity.class);
-            intent.putExtra("address_id", addressId);
-            intent.putExtra("userId", userId);
-            startActivity(intent);
+            it = new Intent(this, ReviseAddressActivity.class);
+            it.putExtra("address_id", addressId);
+            it.putExtra("userId", userId);
+            editAddressLauncher.launch(it);
         });
 
         addAddress = findViewById(R.id.btn_new_address);
@@ -67,6 +83,27 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
 
         addAddress.setOnClickListener(this);
         back.setOnClickListener(this);
+
+        addAddressLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        list.clear();
+                        toAddress();
+                        Log.d(TAG, "更新已完成");
+                    }
+                }
+        );
+        editAddressLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        list.clear();
+                        toAddress(); // 触发数据重载
+                        Log.d(TAG, "地址修改完成，列表已刷新");
+                    }
+                }
+        );
     }
 
     @Override
@@ -80,12 +117,11 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
 
     private void handleAddAddressClick() {
         Intent intent = new Intent(this, NewAddressActivity.class);
-        startActivity(intent);
+        addAddressLauncher.launch(intent);
     }
 
     private void handleBackClick() {
-        Intent intent = new Intent(this, MyFragment.class);
-        startActivity(intent);
+        finish();
     }
 
     private void toAddress(){
@@ -93,13 +129,11 @@ public class AddressActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void run(){
                 try{
-                    SharedPreferences info = getSharedPreferences("info", MODE_PRIVATE);
-                    info.getString("token", token);
                     URL url = new URL(strAddress);
                     HttpURLConnection cn = (HttpURLConnection) url.openConnection();
                     cn.setRequestMethod("GET");
                     cn.setRequestProperty("Content-Type","application/json");
-                    cn.setRequestProperty("token", "2d5cdc70d4eeba206a4358529452eddf");
+                    cn.setRequestProperty("token", token);
                     if (cn.getResponseCode() == 200) {
                         InputStream inputStream = cn.getInputStream();
                         byte[] bytes=new byte[1024];

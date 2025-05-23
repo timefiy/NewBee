@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,8 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText et_name,et_pwd;
     private Button btn_register;
     private boolean isLogin=true;
-    private String str="http://115.158.64.129:28019/api/v1/user/register";
-    private String strLogin="http://115.158.64.129:28019/api/v1/user/login";
+    private String str="http://115.158.64.84:28019/api/v1/user/register";
+    private String strLogin="http://115.158.64.84:28019/api/v1/user/login";
     private Handler handler=new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
