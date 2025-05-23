@@ -22,4 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "ShopApp"
 include(":app")
 include(":CityPicker")
-include(":ShoppingCart")
+

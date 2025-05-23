@@ -38,15 +38,19 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(project(":CityPicker"))
-    implementation(project(":ShoppingCart"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation ("com.google.code.gson:gson:2.10.1")
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    //RecyclerView
+    implementation ("androidx.recyclerview:recyclerview:1.1.0")
+    //RecyclerView的好搭档
 
-    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    //Gson解析
+    implementation ("com.google.code.gson:gson:2.10.1")
+    //图片加载器
+    implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
 
 
 
