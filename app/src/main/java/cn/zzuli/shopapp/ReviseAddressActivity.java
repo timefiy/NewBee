@@ -1,10 +1,7 @@
 package cn.zzuli.shopapp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -12,34 +9,24 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 
 import cn.zzuli.citypicker.bean.CityInfo;
 import cn.zzuli.citypicker.utils.CityListLoader;
 import cn.zzuli.citypicker.widget.CityPickerBottomDialog;
-import cn.zzuli.shopapp.Adapter.AddressAdapter;
 import cn.zzuli.shopapp.entity.Address;
-import cn.zzuli.shopapp.fragment.MyFragment;
 
 public class ReviseAddressActivity extends AppCompatActivity {
     private EditText userName;

@@ -1,7 +1,5 @@
-package cn.zzuli.shopapp.Adapter;
+package cn.zzuli.shopapp.adapter;
 
-import android.content.Intent;
-import android.media.ImageReader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate;
 
 import java.util.List;
 

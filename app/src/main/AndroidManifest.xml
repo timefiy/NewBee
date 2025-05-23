@@ -18,12 +18,7 @@
         <activity android:name=".ReviseAddressActivity"
             android:exported="false"/>
         <activity android:name=".AddressActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
         <activity android:name=".NewAddressActivity"
             android:exported="false"/>
