@@ -38,8 +38,8 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean isLogin=true;
     private TopBar topBar;
 
-    private final String str="http://115.158.64.129:28019/api/v1/user/register";
-    private final String strLogin="http://115.158.64.129:28019/api/v1/user/login";
+    private final String str="http://115.158.64.84:28019/api/v1/user/register";
+    private final String strLogin="http://115.158.64.84:28019/api/v1/user/login";
 
     // 用于在子线程完成后更新UI
     private Handler handler=new Handler(){
