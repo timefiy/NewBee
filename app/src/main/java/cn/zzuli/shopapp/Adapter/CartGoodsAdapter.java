@@ -15,12 +15,12 @@ import cn.zzuli.shopapp.R;
 import cn.zzuli.shopapp.entity.CarResponse;
 import java.util.List;
 
-public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.CartViewHolder> {
+public class CartGoodsAdapter extends RecyclerView.Adapter<CartGoodsAdapter.CartViewHolder> {
 
     private List<CarResponse.DataBean> goodsList;
 
     // 构造方法传入数据
-    public GoodsAdapter(List<CarResponse.DataBean> goodsList) {
+    public CartGoodsAdapter(List<CarResponse.DataBean> goodsList) {
         this.goodsList = goodsList;
     }
 
