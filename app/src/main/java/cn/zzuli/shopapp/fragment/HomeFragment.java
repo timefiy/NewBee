@@ -229,7 +229,7 @@ public class HomeFragment extends Fragment {
                         reader.close();
                         
                         // 打印原始响应数据
-                        Log.d("NETWORK", "Raw Response: " + response.toString());
+//                        Log.d("NETWORK", "Raw Response: " + response.toString());
 
                         // 切换到主线程更新UI
                         requireActivity().runOnUiThread(new Runnable() {
@@ -540,7 +540,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==100){
+        if(requestCode==100 && data != null){
             int result = data.getIntExtra("result", 0);
             if(result>0){
                 isLogin=true;

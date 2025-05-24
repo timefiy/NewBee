@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import cn.zzuli.shopapp.AboutUsActivity;
+import cn.zzuli.shopapp.AccountActivity;
 import cn.zzuli.shopapp.R;
 
 public class MyFragment extends Fragment {
@@ -44,11 +45,22 @@ public class MyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
+
+        // 关于我们的跳转
         RelativeLayout AboutAs=view.findViewById(R.id.AboutAs);
         AboutAs.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(),AboutUsActivity.class);
             startActivity(intent);
         });
+
+        // appended by LWH
+        // 账号管理跳转
+        RelativeLayout rela_account_management=view.findViewById(R.id.account_management);
+        rela_account_management.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AccountActivity.class);
+            startActivity(intent);
+        });
+
         return view;
 
     }
