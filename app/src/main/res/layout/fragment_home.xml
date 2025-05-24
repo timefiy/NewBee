@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.HomeFragment">
+<!--    约束布局-->
 
+<!--    可滚动内容区域-->
     <ScrollView
         android:id="@+id/sv_home"
         android:layout_width="0dp"
@@ -14,24 +16,83 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="60dp">
 
-            <ImageView
-                android:id="@+id/imageView3"
+            <com.youth.banner.Banner
+                android:id="@+id/banner_text"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:banner_loop_time="3000" />
+<!--            app:banner_loop_time="1000" 轮播时间 -->
+
+            <!-- 将 GridView 更改为 MyGridView -->
+            <cn.zzuli.shopapp.view.MyGridView
+                    android:id="@+id/home_nav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="5"
+                    android:verticalSpacing="8dp"
+                    android:horizontalSpacing="8dp"
+                    android:stretchMode="columnWidth"
+                    android:gravity="center" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/empty_cart" />
+                android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView4"
+                <TextView
+                    android:id="@+id/home_newgoods_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="新品推荐"
+                    android:gravity="center"/>
+
+                <cn.zzuli.shopapp.view.MyGridView
+                    android:id="@+id/home_newgoods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="2"
+                    android:gravity="center"/>
+
+                <TextView
+                android:id="@+id/home_hotgoods_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/kesrtd" />
+                android:text="热门商品"
+                android:gravity="center"/>
+
+                <cn.zzuli.shopapp.view.MyGridView
+                    android:id="@+id/home_hotgoods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="2"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/home_recommendgoods_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="最新推荐"
+                    android:gravity="center"/>
+
+                <cn.zzuli.shopapp.view.MyGridView
+                    android:id="@+id/home_recommendgoods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:numColumns="2"
+                    android:gravity="center"/>
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

@@ -43,14 +43,13 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     //RecyclerView
     implementation ("androidx.recyclerview:recyclerview:1.1.0")
-    //RecyclerView的好搭档
-
     //Gson解析
     implementation ("com.google.code.gson:gson:2.10.1")
     //图片加载器
     implementation("com.github.bumptech.glide:glide:4.12.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
-
+    // Banner 轮播图库
+    implementation("io.github.youth5201314:banner:2.2.3")
 
 
 

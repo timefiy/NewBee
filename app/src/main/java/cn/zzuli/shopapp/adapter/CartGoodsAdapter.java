@@ -1,4 +1,4 @@
-package cn.zzuli.shopapp.Adapter;
+package cn.zzuli.shopapp.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
