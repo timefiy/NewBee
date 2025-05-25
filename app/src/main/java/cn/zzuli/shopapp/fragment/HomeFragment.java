@@ -4,8 +4,10 @@ package cn.zzuli.shopapp.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -201,6 +203,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void initData() {
+        // 检查登录状态
+        SharedPreferences info = requireActivity().getSharedPreferences("info", Context.MODE_PRIVATE);
+        String token = info.getString("token", "");
+        isLogin = !TextUtils.isEmpty(token);
+
         // 创建新线程：将网络请求放在子线程总
         new Thread(new Runnable() {
             @Override
