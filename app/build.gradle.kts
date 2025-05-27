@@ -38,7 +38,25 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(project(":CityPicker"))
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.activity.compose)
+    implementation(platform(libs.compose.bom))
+    implementation(libs.ui)
+    implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.material3)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    // 解析json
+    implementation("com.google.code.gson:gson:2.10.1")
+    // Glide 图片加载库
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.ui.test.junit4)
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+    // Banner 轮播图库
+    implementation("io.github.youth5201314:banner:2.2.3")
+    debugImplementation(libs.ui.tooling)
+    debugImplementation(libs.ui.test.manifest)
 }

@@ -55,5 +55,7 @@
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_mine"
             android:text="我的" />
+
     </com.google.android.material.tabs.TabLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

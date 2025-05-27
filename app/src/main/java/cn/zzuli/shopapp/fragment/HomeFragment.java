@@ -108,13 +108,14 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+
         return view;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==100){
+        if(requestCode==100&&data!=null){
             int result = data.getIntExtra("result", 0);
             if(result>0){
                 isLogin=true;
