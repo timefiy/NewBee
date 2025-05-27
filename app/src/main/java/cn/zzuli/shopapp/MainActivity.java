@@ -9,6 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.tabs.TabLayout;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         cartFragment=new CartFragment();
         myFragment=new MyFragment();
         tabLayout=findViewById(R.id.tabLayout);
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     /**
      * 设置消息红点
      */

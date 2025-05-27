@@ -7,13 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity">
 
-    <include
-        android:id="@+id/topbar"
-        layout="@layout/top"
-        android:layout_width="0dp"
+    <cn.zzuli.shopapp.view.TopBar
+        android:id="@+id/top_bar_register"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -24,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topbar"
+        app:layout_constraintTop_toBottomOf="@id/top_bar_register"
         app:srcCompat="@drawable/login_logo" />
 
     <EditText

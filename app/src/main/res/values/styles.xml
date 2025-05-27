@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="NoWrapTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
+    </style>
+    <style name="PaymentButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="shapeAppearance">@style/Animation.Design.BottomSheetDialog</item>
+    </style>
+    <style name="PaymentDialogTheme" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/bg_dialog_rounded</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PaymentButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/PaymentButton</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+</resources>
