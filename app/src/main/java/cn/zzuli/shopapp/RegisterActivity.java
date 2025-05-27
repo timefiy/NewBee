@@ -33,7 +33,7 @@ import cn.zzuli.shopapp.utils.SecurityUtil;
 import cn.zzuli.shopapp.view.TopBar;
 
 public class RegisterActivity extends AppCompatActivity {
-    private TextView tv_switch;
+    private TextView tv_title,tv_switch;
     private EditText et_name,et_pwd;
     private Button btn_register;
     private boolean isLogin=true;
