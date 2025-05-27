@@ -319,7 +319,7 @@ public class CartFragment extends Fragment {
         totalText.setText("总计：￥" + total);
 
         submitBtn.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "订单已提交", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "还未实现", Toast.LENGTH_SHORT).show();
             // TODO: 发送到服务端的提交逻辑
         });
     }
