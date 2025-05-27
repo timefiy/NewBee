@@ -30,14 +30,19 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 import cn.zzuli.shopapp.utils.SecurityUtil;
+import cn.zzuli.shopapp.view.TopBar;
 
 public class RegisterActivity extends AppCompatActivity {
-    private TextView tv_title,tv_switch;
+    private TextView tv_switch;
     private EditText et_name,et_pwd;
     private Button btn_register;
     private boolean isLogin=true;
-    private String str="http://115.158.64.84:28019/api/v1/user/register";
-    private String strLogin="http://115.158.64.84:28019/api/v1/user/login";
+    private TopBar topBar;
+
+    private final String str="http://115.158.64.84:28019/api/v1/user/register";
+    private final String strLogin="http://115.158.64.84:28019/api/v1/user/login";
+
+    // 用于在子线程完成后更新UI
     private Handler handler=new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -55,7 +60,10 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+
+        // 加载布局
         setContentView(R.layout.activity_register);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -65,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        tv_title=findViewById(R.id.tv_title);
+        topBar = findViewById(R.id.top_bar_register);
         tv_switch=findViewById(R.id.tv_switch);
         et_name=findViewById(R.id.et_name);
         et_pwd=findViewById(R.id.et_pwd);
@@ -186,9 +194,11 @@ public class RegisterActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent intent=new Intent();
-                                    intent.putExtra("result",1);
-                                    setResult(RESULT_OK,intent);
+                                    Intent intent = new Intent();
+                                    intent.putExtra("result", 1);
+                                    intent.putExtra("token", token);
+                                    intent.putExtra("name", name);
+                                    setResult(RESULT_OK, intent);
                                     finish();
                                 }
                             });
@@ -210,17 +220,25 @@ public class RegisterActivity extends AppCompatActivity {
         }.start();
     }
 
+    @Override
+    public void onBackPressed() {
+        // 返回时也设置结果
+        Intent intent = new Intent();
+        intent.putExtra("result", 0);
+        setResult(RESULT_CANCELED, intent);
+        super.onBackPressed();
+    }
+
     //参数isLog,false 注册，true 登陆
     private void toSwith(boolean isLog) {
         if(isLog){
-            tv_title.setText("登陆");
-            btn_register.setText("登陆");
+            topBar.setTitle("登录", 20);
+            btn_register.setText("登录");
             tv_switch.setText("去注册");
         }else{
-
-            tv_title.setText("注册");
+            topBar.setTitle("注册", 20);
             btn_register.setText("注册");
-            tv_switch.setText("去登陆");
+            tv_switch.setText("去登录");
         }
     }
 }
