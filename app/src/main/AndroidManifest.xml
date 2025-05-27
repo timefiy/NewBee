@@ -2,10 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -15,15 +18,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopApp"
         tools:targetApi="31">
-        <activity android:name=".OrdersDetailsActivity"
+        <activity
+            android:name=".OrdersDetailsActivity"
             android:exported="false"/>
-        <activity android:name=".MyOrderActivity"
+        <activity
+            android:name=".MyOrderActivity"
             android:exported="false" />
         <activity
             android:name=".ReviseAddressActivity"
             android:exported="false" />
-        <activity
-            android:name=".AddressActivity"
+        <activity android:name=".AddressActivity"
+            android:exported="false"/>
+        <activity android:name=".NewAddressActivity"
             android:exported="false"/>
         <activity
             android:name=".NewAddressActivity"
@@ -33,6 +39,9 @@
             android:exported="false" />
         <activity
             android:name=".SearchActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"

@@ -54,9 +54,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    // 解析json
-    implementation("com.google.code.gson:gson:2.10.1")
-    // Glide 图片加载库
+    //RecyclerView
+    implementation ("androidx.recyclerview:recyclerview:1.1.0")
+    //Gson解析
+    implementation ("com.google.code.gson:gson:2.10.1")
+    //图片加载器
     implementation("com.github.bumptech.glide:glide:4.12.0")
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
