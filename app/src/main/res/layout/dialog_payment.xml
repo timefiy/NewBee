@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- 对话框标题 -->
+
+    <!-- 支付按钮容器 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+        <!-- 支付宝支付 -->
+        <Button
+            android:id="@+id/btn_alipay"
+            style="@style/PaymentButton"
+            android:backgroundTint="#03A9F4"
+            android:drawablePadding="16dp"
+            android:text="支付宝支付" />
+
+        <!-- 微信支付 -->
+        <Button
+            android:id="@+id/btn_wechat"
+            style="@style/PaymentButton"
+            android:backgroundTint="#4CAF50"
+            android:drawablePadding="16dp"
+            android:text="微信支付" />
+
+        <!-- 取消按钮 -->
+    </LinearLayout>
+</LinearLayout>
