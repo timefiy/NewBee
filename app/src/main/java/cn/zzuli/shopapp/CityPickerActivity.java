@@ -30,8 +30,8 @@ public class CityPickerActivity extends AppCompatActivity {
             return insets;
         });
         initCityPicker();
-        et_city=findViewById(R.id.editTextText);
-        et_city.setOnTouchListener(new View.OnTouchListener() {
+         et_city=findViewById(R.id.editTextText);
+         et_city.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 dialog.show();

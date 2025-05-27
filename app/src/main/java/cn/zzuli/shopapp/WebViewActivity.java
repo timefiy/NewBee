@@ -14,7 +14,6 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
-
         WebView webView = findViewById(R.id.web_view);
         webView.setWebViewClient(new WebViewClient() {
             @Override
