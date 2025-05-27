@@ -74,13 +74,13 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="#f5f5f5"
-        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout3"
+        app:layout_constraintBottom_toBottomOf="@+id/rl_to_orders"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 
     <RelativeLayout
-        android:id="@+id/relativeLayout3"
+        android:id="@+id/rl_to_orders"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="32dp"
@@ -111,7 +111,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout2"
+        android:id="@+id/rl_to_address"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:paddingLeft="15dp"
@@ -130,6 +130,7 @@
         </TextView>
 
         <ImageView
+            android:id="@+id/iv_to_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -147,7 +148,7 @@
         android:paddingRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/rl_to_address">
 
         <TextView
             android:layout_width="wrap_content"
