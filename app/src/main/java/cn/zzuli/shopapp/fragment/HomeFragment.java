@@ -4,8 +4,10 @@ package cn.zzuli.shopapp.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -201,6 +203,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void initData() {
+        // 检查登录状态
+        SharedPreferences info = requireActivity().getSharedPreferences("info", Context.MODE_PRIVATE);
+        String token = info.getString("token", "");
+        isLogin = !TextUtils.isEmpty(token);
+
         // 创建新线程：将网络请求放在子线程总
         new Thread(new Runnable() {
             @Override
@@ -229,7 +236,7 @@ public class HomeFragment extends Fragment {
                         reader.close();
                         
                         // 打印原始响应数据
-                        Log.d("NETWORK", "Raw Response: " + response.toString());
+//                        Log.d("NETWORK", "Raw Response: " + response.toString());
 
                         // 切换到主线程更新UI
                         requireActivity().runOnUiThread(new Runnable() {
@@ -259,7 +266,7 @@ public class HomeFragment extends Fragment {
 //                        Log.e("HTTP_ERROR", "Error Response: " + errorResponse.toString());
 //                    }
                 } catch (Exception e) {
-                    Log.e("NETWORK_ERROR", "Network request failed: " + e.getMessage());
+//                    Log.e("NETWORK_ERROR", "Network request failed: " + e.getMessage());
                     e.printStackTrace();
                     // 切换到主线程显示错误信息
                     requireActivity().runOnUiThread(new Runnable() {
@@ -315,13 +322,13 @@ public class HomeFragment extends Fragment {
                         List<Carousel> carouselList = data.getCarousels();
                         if (carouselList != null) {
                             carousels = carouselList;
-                            Log.d("JSON", "Carousels count: " + carouselList.size());
+//                            Log.d("JSON", "Carousels count: " + carouselList.size());
                         }
                         
                         List<Goods> hotGoodsList = data.getHotGoodses();
                         if (hotGoodsList != null) {
                             hotGoodses = hotGoodsList;
-                            Log.d("JSON", "Hot goods count: " + hotGoodsList.size());
+//                            Log.d("JSON", "Hot goods count: " + hotGoodsList.size());
                             // 更新热门商品 GridView
                             updateHotGoodsGridView();
                         }
@@ -338,7 +345,7 @@ public class HomeFragment extends Fragment {
                         List<Goods> recommendGoodsList = data.getRecommendGoodses();
                         if (recommendGoodsList != null) {
                             recommendGoodses = recommendGoodsList;
-                            Log.d("JSON", "Recommend goods count: " + recommendGoodsList.size());
+//                            Log.d("JSON", "Recommend goods count: " + recommendGoodsList.size());
                             // 更新推荐商品 GridView
                             updateRecommendGoodsGridView();
                         }
@@ -540,7 +547,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==100){
+        if(requestCode==100 && data != null){
             int result = data.getIntExtra("result", 0);
             if(result>0){
                 isLogin=true;

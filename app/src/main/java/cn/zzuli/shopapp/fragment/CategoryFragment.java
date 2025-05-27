@@ -24,6 +24,7 @@ import cn.zzuli.shopapp.SearchActivity;
 import cn.zzuli.shopapp.WebViewActivity;
 
 
+
 public class CategoryFragment extends Fragment {
 
     // 分类数据
