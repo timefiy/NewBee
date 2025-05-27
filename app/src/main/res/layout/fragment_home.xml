@@ -6,6 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.HomeFragment">
+<!--    约束布局-->
+
+<!--    可滚动内容区域-->
 
     <ScrollView
         android:id="@+id/sv_home"
@@ -13,25 +16,91 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="60dp">
 
-            <ImageView
-                android:id="@+id/imageView3"
+            <com.youth.banner.Banner
+                android:id="@+id/banner_text"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:banner_loop_time="3000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--            app:banner_loop_time="1000" 轮播时间 -->
+
+            <!-- 将 GridView 更改为 MyGridView -->
+            <cn.zzuli.shopapp.view.MyGridView
+                android:id="@+id/home_nav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/empty_cart" />
+                android:gravity="center"
+                android:horizontalSpacing="8dp"
+                android:numColumns="5"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="8dp" />
 
-            <ImageView
-                android:id="@+id/imageView4"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/kesrtd" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/home_newgoods_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/NewGoodsRecommend"
+                    android:textSize="20sp"
+                    android:textColor="@color/top"/>
+
+                <cn.zzuli.shopapp.view.MyGridView
+                    android:id="@+id/home_newgoods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:numColumns="2" />
+
+                <TextView
+                    android:id="@+id/home_hotgoods_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/HotGoods"
+                    android:textSize="20sp"
+                    android:textColor="@color/top" />
+
+                <cn.zzuli.shopapp.view.MyGridView
+                    android:id="@+id/home_hotgoods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:numColumns="2" />
+
+                <TextView
+                    android:id="@+id/home_recommendgoods_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/LatestRecommendation"
+                    android:textSize="20sp"
+                    android:textColor="@color/top" />
+
+                <cn.zzuli.shopapp.view.MyGridView
+                    android:id="@+id/home_recommendgoods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:numColumns="2" />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
@@ -72,7 +141,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginEnd="16dp"
                 android:paddingStart="16dp"
-                android:text="新蜂商城"
+                android:text="@string/NewBee"
                 android:textColor="#00BCD4"
                 android:textSize="20sp" />
 
@@ -98,7 +167,7 @@
             android:id="@+id/tv_home_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="登录" />
+            android:text="@string/sign" />
 
         <ImageView
             android:id="@+id/iv_home_login"
