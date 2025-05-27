@@ -36,4 +36,30 @@
             android:layout_height="wrap_content"
             android:text="价格" />
     </com.google.android.material.tabs.TabLayout>
+    <!-- 居中内容区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/tl_main"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- 手持放大镜的人物插画 -->
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/kesrtd"
+            android:contentDescription="手持放大镜搜索商品的人物形象"
+            android:scaleType="fitCenter"/>
+
+        <!-- 搜索提示文字 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索想要的商品"
+            android:textColor="#666666"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

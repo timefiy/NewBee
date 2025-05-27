@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout2"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.CategoryFragment">
+    android:orientation="horizontal"
+    android:background="#FFFFFF">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="分类"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- 左侧二级分类列表（浅灰背景） -->
+    <ListView
+        android:id="@+id/category_list"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:background="#f5f5f5"
+        android:choiceMode="singleChoice"
+        android:divider="#e0e0e0"
+        android:dividerHeight="1dp"
+        android:paddingTop="8dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- 右侧三级分类网格（带16dp内边距） -->
+    <GridView
+        android:id="@+id/product_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="3"
+        android:columnWidth="80dp"
+        android:horizontalSpacing="16dp"
+        android:verticalSpacing="16dp"
+        android:padding="16dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"/>
+
+</LinearLayout>
