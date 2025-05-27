@@ -42,6 +42,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {//填充数据
         j_11 product = productList.get(position);
+
         // 使用您提供的图片数组
         holder.ivProduct.setImageResource(img[position % img.length]);
         // 设置商品ID（虽然不可见，但仍可存储数据）
@@ -51,9 +52,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         // 使用您提供的价格数组
         holder.tvPrice.setText("¥" + String.valueOf(price[position % price.length]));
 
-
-
-        // 点击事件//-----------------------------------------
+        // 点击事件
         holder.itemView.setOnClickListener(v -> { // 为整个itemView设置点击监听器
             Intent intent = new Intent(context, ProductAdapter.class);// 创建跳转到商品详情页的Intent
             intent.putExtra("goodsId", product.getGoodsId());// 将当前商品的ID作为额外数据放入Intent
