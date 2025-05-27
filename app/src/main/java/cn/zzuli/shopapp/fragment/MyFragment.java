@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import cn.zzuli.shopapp.AboutUsActivity;
+import cn.zzuli.shopapp.AddressActivity;
+import cn.zzuli.shopapp.MyOrderActivity;
 import cn.zzuli.shopapp.R;
+import cn.zzuli.shopapp.RegisterActivity;
 
 public class MyFragment extends Fragment {
 
@@ -45,11 +49,22 @@ public class MyFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         RelativeLayout AboutAs=view.findViewById(R.id.AboutAs);
+        RelativeLayout toAddress = view.findViewById(R.id.rl_to_address);
+        RelativeLayout toOrders = view.findViewById(R.id.rl_to_orders);
+
         AboutAs.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(),AboutUsActivity.class);
             startActivity(intent);
         });
-        return view;
+        toAddress.setOnClickListener(v->{
+            Intent intent = new Intent(getActivity(), AddressActivity.class);
+            startActivity(intent);
+        });
+        toOrders.setOnClickListener(v->{
+            Intent intent = new Intent(getActivity(), MyOrderActivity.class);
+            startActivity(intent);
+        });
 
+        return view;
     }
 }

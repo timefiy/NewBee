@@ -43,7 +43,7 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.VH>{
     public void onBindViewHolder(@NonNull AddressAdapter.VH holder, int position){
         Address address = list.get(position);
         holder.namePhone.setText(address.getUserName()+" "+address.getUserPhone());
-        holder.addressComment.setText(address.getProvinceName()+" "+address.getCityName()+" "+address.getRegionName());
+        holder.addressComment.setText(address.getProvinceName()+" "+address.getCityName()+" "+address.getRegionName()+" "+address.getDetailAddress());
         if(Integer.parseInt(address.getDefaultFlag())== 1){
             holder.defaultFlag.setVisibility(View.VISIBLE);
         } else {

@@ -1,6 +1,9 @@
 package cn.zzuli.shopapp;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +41,7 @@ public class NewAddressActivity extends AppCompatActivity{
     private EditText et_city;
     private Address address = new Address();
     private CityPickerBottomDialog dialog;
+    private String token;
     private String strAddress = "http://115.158.64.84:28019/api/v1/address";
 
     @Override
@@ -51,6 +55,9 @@ public class NewAddressActivity extends AppCompatActivity{
             return insets;
         });
 
+        SharedPreferences info = getSharedPreferences("info", MODE_PRIVATE);
+        token = info.getString("token", "");
+
         et_city=findViewById(R.id.tv_address_choose);
         saveAddress=findViewById(R.id.btn_save_address);
         back = findViewById(R.id.iv_back);
@@ -59,6 +66,7 @@ public class NewAddressActivity extends AppCompatActivity{
         userPhone = findViewById(R.id.et_phone);
         detailAddress = findViewById(R.id.et_detail_address);
 
+        initTextChanged();
         initCityPicker();
         et_city.setKeyListener(null);
         et_city.setOnClickListener(v-> {
@@ -70,6 +78,35 @@ public class NewAddressActivity extends AppCompatActivity{
         });
         back.setOnClickListener(v->{
             finish();
+        });
+    }
+
+    private void initTextChanged() {
+        bindValidation(userName, "^[\\u4e00-\\u9fa5a-zA-Z0-9]{1,}$", "请输入姓名");
+        bindValidation(userPhone, "^1[3-9]\\d{9}$", "手机号格式错误");
+        bindValidation(detailAddress, "^[\\u4e00-\\u9fa5a-zA-Z0-9]{1,}$", "请输入详细地址");
+        et_city.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override public void afterTextChanged(Editable s) {
+                String input = s.toString();
+                et_city.setError(input.isEmpty() ? "请选择地区" : null);
+            }
+        });
+    }
+
+    private void bindValidation(EditText editText, String regex, String errorMsg) {
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override public void afterTextChanged(Editable s) {
+                boolean isValid = s.toString().matches(regex);
+                editText.setError(isValid ? null : errorMsg);
+            }
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
     }
 
@@ -122,7 +159,7 @@ public class NewAddressActivity extends AppCompatActivity{
                     HttpURLConnection cn = (HttpURLConnection) url.openConnection();
                     cn.setRequestMethod("POST");
                     cn.setRequestProperty("Content-Type","application/json");
-                    cn.setRequestProperty("token", "2d5cdc70d4eeba206a4358529452eddf");
+                    cn.setRequestProperty("token", token);
                     cn.setDoOutput(true);
                     OutputStream outputStream = cn.getOutputStream();
                     outputStream.write(params.getBytes(StandardCharsets.UTF_8));
@@ -130,7 +167,7 @@ public class NewAddressActivity extends AppCompatActivity{
                     int responseCode = cn.getResponseCode();
                     runOnUiThread(() -> {
                         if (responseCode == 200) {
-                            finish();
+                            saveAddress();
                         } else {
                             Toast.makeText(NewAddressActivity.this, "添加失败", Toast.LENGTH_SHORT).show();
                         }
@@ -140,6 +177,11 @@ public class NewAddressActivity extends AppCompatActivity{
                 }
             }
         }.start();
+    }
+
+    private void saveAddress() {
+        setResult(RESULT_OK);
+        finish();
     }
 }
 
