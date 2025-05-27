@@ -17,47 +17,69 @@ import java.util.List;
 
 public class CartGoodsAdapter extends RecyclerView.Adapter<CartGoodsAdapter.CartViewHolder> {
 
-    private List<CarResponse.DataBean> goodsList;
+    private List<CarResponse.DataBean> cartGoodsData;
+    private String Imgstr = "http://115.158.64.84:28019/";
+    public interface OnCartChangeListener {
+        void onCartChanged(List<CarResponse.DataBean> updatedCart);
+    }
+    private OnCartChangeListener cartChangeListener;
+
+    public void setOnCartChangeListener(OnCartChangeListener listener) {
+        this.cartChangeListener = listener;
+    }
 
     // 构造方法传入数据
-    public CartGoodsAdapter(List<CarResponse.DataBean> goodsList) {
-        this.goodsList = goodsList;
+    public CartGoodsAdapter(List<CarResponse.DataBean> cartGoodsData) {
+        this.cartGoodsData = cartGoodsData;
     }
 
     // 更新数据方法
-    public void setGoodsList(List<CarResponse.DataBean> goodsList) {
-        this.goodsList = goodsList;
+    public void setcartGoodsData(List<CarResponse.DataBean> cartGoodsData) {
+        this.cartGoodsData = cartGoodsData;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // 加载 item 布局文件（你需要提前准备好 item_goods.xml）,这里是goodslist.xml
+        // 加载 item 布局文件（你需要提前准备好 item_goods.xml）,这里是goods list.xml
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.goodslist, parent, false);
         return new CartViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-        CarResponse.DataBean item = goodsList.get(position);
+        CarResponse.DataBean item = cartGoodsData.get(position);
 
         holder.tvName.setText(item.getGoodsName());
         holder.tvDesc.setText("暂无描述"); // 如果后期后端返回了描述字段再替换
         holder.tvPrice.setText("￥" + item.getSellingPrice());
         holder.tvNum.setText(String.valueOf(item.getGoodsCount()));
+        holder.checkBox.setOnCheckedChangeListener(null);
+        holder.checkBox.setChecked(item.isChecked());
 
+        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            item.setChecked(isChecked);
+
+            if(cartChangeListener != null){
+                cartChangeListener.onCartChanged(cartGoodsData);
+            }
+        });
         Glide.with(holder.itemView.getContext())
-                .load(item.getGoodsCoverImg())
+                .load(Imgstr+item.getGoodsCoverImg())
                 .into(holder.ivPhoto);
 
         // 你也可以在此设置 + / - 按钮的监听器来修改数量
         holder.ivAdd.setOnClickListener(v -> {
             int count = item.getGoodsCount();
-            item.setGoodsCount(count + 1);
-            holder.tvNum.setText(String.valueOf(item.getGoodsCount()));
-            notifyItemChanged(position); // 或回调接口通知更新服务器
+            if (count < 5) {
+                item.setGoodsCount(count + 1);
+                holder.tvNum.setText(String.valueOf(item.getGoodsCount()));
+                notifyItemChanged(position);
+                if (cartChangeListener != null) {
+                    cartChangeListener.onCartChanged(cartGoodsData);
+                }
+            }
         });
 
         holder.ivMinus.setOnClickListener(v -> {
@@ -65,15 +87,19 @@ public class CartGoodsAdapter extends RecyclerView.Adapter<CartGoodsAdapter.Cart
             if (count > 1) {
                 item.setGoodsCount(count - 1);
                 holder.tvNum.setText(String.valueOf(item.getGoodsCount()));
-                notifyItemChanged(position); // 或回调接口通知更新服务器
+                notifyItemChanged(position);
+                if (cartChangeListener != null) {
+                    cartChangeListener.onCartChanged(cartGoodsData);
+                }
             }
         });
+
     }
 
 
     @Override
     public int getItemCount() {
-        return goodsList != null ? goodsList.size() : 0;
+        return cartGoodsData != null ? cartGoodsData.size() : 0;
     }
 
     // 内部 ViewHolder 类

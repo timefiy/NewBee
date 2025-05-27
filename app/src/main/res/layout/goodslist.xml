@@ -26,10 +26,12 @@
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@style/MaterialAlertDialog.Material3.Title.Icon" />
+         />
 
     <TextView
         android:id="@+id/text1"
@@ -43,8 +45,8 @@
 
     <TextView
         android:id="@+id/test2"
-        android:layout_width="160dp"
-        android:layout_height="30dp"
+        android:layout_width="133dp"
+        android:layout_height="35dp"
         android:layout_marginTop="4dp"
         android:text="对商品描叙"
         android:textSize="12sp"
@@ -61,6 +63,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/test2" />
 
+    <TextView
+        android:id="@+id/num"
+        android:layout_width="38dp"
+        android:layout_height="16dp"
+        android:layout_marginBottom="24dp"
+        android:autoText="false"
+        android:gravity="center"
+        android:text="0"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ptoto_down" />
+
     <ImageView
         android:id="@+id/ptoto_down"
         android:layout_width="30dp"
@@ -73,25 +88,14 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/minus" />
 
-    <TextView
-        android:id="@+id/num"
-        android:layout_width="38dp"
-        android:layout_height="16dp"
-        android:layout_marginBottom="40dp"
-        android:autoText="false"
-        android:gravity="center"
-        android:text="0"
-        android:textAllCaps="false"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ptoto_down" />
-
     <ImageView
         android:id="@+id/photo_add"
         android:layout_width="30dp"
         android:layout_height="15dp"
-        app:layout_constraintBottom_toBottomOf="@+id/num"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/num"
+        app:layout_constraintTop_toTopOf="@+id/num"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/plus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
