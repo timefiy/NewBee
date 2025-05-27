@@ -117,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
                     URL url=new URL(str);
                     HttpURLConnection cn= (HttpURLConnection) url.openConnection();
                     cn.setRequestMethod("POST");
-                    cn.setRequestProperty("Content-Type","application/json");
+                    cn.setRequestProperty("Content-Type","application/json");//
                     cn.setDoOutput(true);
                     OutputStream outputStream = cn.getOutputStream();
                     outputStream.write(params.getBytes(StandardCharsets.UTF_8));

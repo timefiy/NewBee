@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <!-- 可滚动的内容区域 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:paddingBottom="72dp"> <!-- 为底部按钮预留空间 -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 商品主图（正反面） -->
+            <ImageView
+                android:id="@+id/productMainImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/b1"
+                android:contentDescription="默认标题"/>
+
+            <!-- 商品信息区域 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- 商品名称 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="HUAWEI Mate 30 Pro 双4000万徕卡电影四摄"
+                    android:textSize="18sp"
+                    android:textColor="#000000"
+                    android:layout_marginBottom="8dp"/>
+
+                <!-- 价格 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="¥5399"
+                    android:textSize="22sp"
+                    android:textColor="#FF0000"
+                    android:layout_marginBottom="8dp"/>
+
+                <!-- 配送信息 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="免邮费 顺丰快递"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- 导航选项卡分隔线 -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E0E0E0"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- 导航选项卡 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="概述"
+                        android:textSize="14sp"
+                        android:textColor="#000000"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="参数"
+                        android:textSize="14sp"
+                        android:textColor="#000000"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="安装服务"
+                        android:textSize="14sp"
+                        android:textColor="#000000"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="常见问题"
+                        android:textSize="14sp"
+                        android:textColor="#000000"
+                        android:gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 商品详情图片1 -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/b2"
+                android:contentDescription="HUAWEI Mate 30 Pro详情展示1"/>
+
+            <!-- 商品详情图片2 -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/b3"
+                android:contentDescription="HUAWEI Mate 30 Pro详情展示2"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 底部固定按钮区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:elevation="8dp">
+
+        <!-- 客服图标 -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/kefu"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="16dp"
+            android:contentDescription="客服"/>
+
+        <!-- 购物车图标（带数字标记） -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_shopping_cart"
+                android:contentDescription="购物车"/>
+
+            <!-- 购物车数量标记 -->
+            <TextView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+
+                android:layout_marginTop="-4dp"
+                android:layout_marginRight="-4dp"
+                android:background="@drawable/gouwuche"
+                android:text="1"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp"
+                android:gravity="center"/>
+        </RelativeLayout>
+
+        <!-- 加入购物车按钮 -->
+        <Button
+            android:id="@+id/addToCartButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="加入购物车"
+            android:background="@drawable/color12"
+            android:textColor="#FFFFFF"
+            android:layout_marginRight="4dp"/>
+
+        <!-- 立即购买按钮 -->
+        <Button
+            android:id="@+id/buyNowButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="立即购买"
+            android:background="@drawable/color12"
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="4dp"/>
+    </LinearLayout>
+</RelativeLayout>
