@@ -1,5 +1,7 @@
 package cn.zzuli.shopapp.fragment;
 
+import android.content.Context;
+import android.graphics.Color;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.annotation.SuppressLint;
@@ -18,6 +20,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -360,6 +365,4 @@ public class CartFragment extends Fragment {
             }
         }).start();
     }
-
-
 }
