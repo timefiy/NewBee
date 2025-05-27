@@ -14,6 +14,14 @@ public class CarResponse {
 
     private String message;
 
+    public List<DataBean> getData() {
+        return data;
+    }
+
+    public void setData(List<DataBean> data) {
+        this.data = data;
+    }
+
     public int getResultCode() {
         return resultCode;
     }
@@ -35,6 +43,7 @@ public class CarResponse {
      * 对应服务器返回的 data 数组中的每一项。
      */
     public static class DataBean {
+        private boolean checked;
         private int cartItemId;
         private int goodsCount;
         private String goodsCoverImg;
@@ -88,6 +97,14 @@ public class CarResponse {
 
         public void setSellingPrice(int sellingPrice) {
             this.sellingPrice = sellingPrice;
+        }
+
+        public boolean isChecked() {
+            return checked;
+        }
+
+        public void setChecked(boolean checked) {
+            this.checked = checked;
         }
     }
 }

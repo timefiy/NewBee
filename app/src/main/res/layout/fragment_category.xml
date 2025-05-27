@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout2"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.CategoryFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="分类"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!-- 左侧列表 (固定宽度) -->
+    <!-- 关键：禁止权重分配 -->
+
+<!-- 右侧网格 (剩余空间) -->
+    <ListView
+        android:id="@+id/category_list"
+        android:layout_width="372dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:background="@color/gray_ddd" />
+
+    <GridView
+        android:id="@+id/product_grid"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+</LinearLayout>

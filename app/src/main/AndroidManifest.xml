@@ -27,11 +27,9 @@
         <activity
             android:name=".ReviseAddressActivity"
             android:exported="false" />
-        <activity android:name=".AddressActivity"
-            android:exported="false"/>
-        <activity android:name=".NewAddressActivity"
-            android:exported="false"/>
-
+        <activity
+            android:name=".AddressActivity"
+            android:exported="false" />
         <activity
             android:name=".NewAddressActivity"
             android:exported="false" />
@@ -48,6 +46,10 @@
 
         <activity
             android:name=".AccountActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".CategoryActivity"
             android:exported="false" />
 
         <activity
