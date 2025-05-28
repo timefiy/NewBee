@@ -19,6 +19,7 @@ public class CartGoodsAdapter extends RecyclerView.Adapter<CartGoodsAdapter.Cart
 
     private List<CarResponse.DataBean> cartGoodsData;
     private String Imgstr = "http://115.158.64.84:28019/";
+    private boolean showOperation = true;
     public interface OnCartChangeListener {
         void onCartChanged(List<CarResponse.DataBean> updatedCart);
     }
@@ -29,8 +30,9 @@ public class CartGoodsAdapter extends RecyclerView.Adapter<CartGoodsAdapter.Cart
     }
 
     // 构造方法传入数据
-    public CartGoodsAdapter(List<CarResponse.DataBean> cartGoodsData) {
+    public CartGoodsAdapter(List<CarResponse.DataBean> cartGoodsData,boolean showOperation) {
         this.cartGoodsData = cartGoodsData;
+        this.showOperation = showOperation;
     }
 
     // 更新数据方法
@@ -57,6 +59,12 @@ public class CartGoodsAdapter extends RecyclerView.Adapter<CartGoodsAdapter.Cart
         holder.tvNum.setText(String.valueOf(item.getGoodsCount()));
         holder.checkBox.setOnCheckedChangeListener(null);
         holder.checkBox.setChecked(item.isChecked());
+
+        //根据传递的showOperation参数不同,选择是否显示选择框和数量加减
+        holder.checkBox.setVisibility(showOperation ? View.VISIBLE : View.GONE);
+        holder.ivAdd.setVisibility(showOperation ? View.VISIBLE : View.GONE);
+        holder.ivMinus.setVisibility(showOperation ? View.VISIBLE : View.GONE);
+
 
         holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             item.setChecked(isChecked);
