@@ -1,12 +1,13 @@
 package cn.zzuli.shopapp;
 
-
-
 import android.os.Bundle;
+//import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,10 +19,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.zzuli.shopapp.R;
 import cn.zzuli.shopapp.entity.j_11;
 
 public class ProductDetailActivity extends AppCompatActivity {
+    //private static final String TAG = "ProductDetailActivity";
     int img[] ={R.drawable.b1,R.drawable.b1,R.drawable.b1,R.drawable.b1,R.drawable.b1,R.drawable.b1,R.drawable.b1,R.drawable.b1,
             R.drawable.b1,R.drawable.b1,R.drawable.b1,R.drawable.b1,R.drawable.b1
             ,R.drawable.b1,R.drawable.b1,R.drawable.b1,R.drawable.b1,R.drawable.b1};
@@ -61,22 +62,28 @@ public class ProductDetailActivity extends AppCompatActivity {
         ivProduct = findViewById(R.id.iv_product);
         tvName = findViewById(R.id.tv_product_name);
         tvPrice = findViewById(R.id.tv_product_price);
+        
+        // 初始化 j_11 对象
+        j = new j_11();
+        
         for(int i=0;i<id.length;i++){
             j.setGoodsId(id[i]);
             j.setGoodsName(text1[i]);
             j.setGoodsCoverImg(img[i]);
             j.setSellingPrice(price[i]);
             list.add(j);
+            // 每次循环创建新的 j_11 对象
+            j = new j_11();
         }
 
         for (int i = 0; i < list.size(); i++) {
             j_11 j1 = list.get(i);
-            if (goodsId == Integer.toString(j1.getGoodsId())) {
+            if (goodsId.equals(String.valueOf(j1.getGoodsId()))) {
                 ivProduct.setImageResource(j1.getGoodsCoverImg());
                 // 设置商品名称（使用j_11中的商品名称）
                 tvName.setText(j1.getGoodsName());
                 // 使用您提供的价格数组
-                tvPrice.setText(j1.getSellingPrice());
+                tvPrice.setText(String.valueOf(j1.getSellingPrice()));
                 break;
             }
         }

@@ -1,6 +1,8 @@
 package cn.zzuli.shopapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import cn.zzuli.shopapp.R;
+import cn.zzuli.shopapp.ProductDetailActivity;
 import cn.zzuli.shopapp.entity.Goods;
 
 public class GoodsAdapter extends BaseAdapter {
@@ -52,22 +55,38 @@ public class GoodsAdapter extends BaseAdapter {
             holder.goodsName = convertView.findViewById(R.id.tv_goods_name);
             holder.goodsPrice = convertView.findViewById(R.id.tv_goods_price);
             convertView.setTag(holder);
+//            Log.e("GoodsAdapter", "创建新的convertView: " + position);
         } else {
             holder = (ViewHolder) convertView.getTag();
+//            Log.e("GoodsAdapter", "复用convertView: " + position);
         }
 
         Goods goods = goodsList.get(position);
+//        Log.e("GoodsAdapter", "处理商品: " + position + ", ID: " + goods.getGoodsId());
 
         // 使用 Glide 加载图片
         Glide.with(context)
-             .load(goods.getGoodsCoverImg()) // 假设 Goods 类有 getGoodsCoverImg() 方法
-             .placeholder(R.drawable.ic_category) // 可选：占位图
-             .error(R.drawable.ic_menu) // 可选：错误图
+             .load("http://115.158.64.84:28019" + goods.getGoodsCoverImg())
+             .placeholder(R.drawable.ic_category)
+             .error(R.drawable.ic_menu)
              .into(holder.goodsImage);
 
         // 设置商品名称和价格
-        holder.goodsName.setText(goods.getGoodsName()); // 假设 Goods 类有 getGoodsName() 方法
-        holder.goodsPrice.setText("¥ " + goods.getSellingPrice()); // 假设 Goods 类有 getSellingPrice() 方法
+        holder.goodsName.setText(goods.getGoodsName());
+        holder.goodsPrice.setText("¥ " + goods.getSellingPrice());
+
+        // 给整个商品项添加点击事件
+        convertView.setClickable(true);  // 确保视图可点击
+        convertView.setFocusable(true);  // 确保视图可获得焦点
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Log.e("GoodsAdapter", "点击事件触发 - 商品ID: " + goods.getGoodsId());
+                Intent intent = new Intent(context, ProductDetailActivity.class);
+                intent.putExtra("goodsId", String.valueOf(goods.getGoodsId()));
+                context.startActivity(intent);
+            }
+        });
 
         return convertView;
     }
