@@ -49,6 +49,7 @@ import cn.zzuli.shopapp.entity.Goods;
 import cn.zzuli.shopapp.entity.HomeData;
 import cn.zzuli.shopapp.entity.Icon;
 import cn.zzuli.shopapp.adapter.GoodsAdapter;
+import cn.zzuli.shopapp.ProductDetailActivity;
 
 
 public class HomeFragment extends Fragment {
@@ -367,129 +368,51 @@ public class HomeFragment extends Fragment {
     // 添加更新新品上线 GridView 的方法
     private void updateNewGoodsGridView() {
         if (newGoodses != null && !newGoodses.isEmpty()) {
-            GoodsAdapter newGoodsAdapter = new GoodsAdapter(getContext(), newGoodses) {
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    if (convertView == null) {
-                        // 修改这里，使用 home_goods.xml 布局
-                        convertView = LayoutInflater.from(getContext()).inflate(R.layout.home_goods, parent, false);
-                    }
-
-                    // 修改这里的 ID，匹配 home_goods.xml 中的 ID
-                    ImageView goodsImage = convertView.findViewById(R.id.iv_goods_image);
-                    TextView goodsName = convertView.findViewById(R.id.tv_goods_name);
-                    TextView goodsPrice = convertView.findViewById(R.id.tv_goods_price);
-
-                    Goods goods = newGoodses.get(position);
-
-                    Glide.with(getContext())
-                         .load("http://115.158.64.84:28019" + goods.getGoodsCoverImg())
-                         .placeholder(R.drawable.ic_category)
-                         .error(R.drawable.ic_menu)
-                         .into(goodsImage);
-
-                    goodsName.setText(goods.getGoodsName());
-                    // 确认 Goods 类中的方法名和数据类型是否正确
-                    goodsPrice.setText("￥" + goods.getSellingPrice()); // 假设是 getSellingPrice()
-
-                    return convertView;
-                }
-            };
+            GoodsAdapter newGoodsAdapter = new GoodsAdapter(getContext(), newGoodses);
             newgoods_gri.setAdapter(newGoodsAdapter);
+            
+            // 添加点击事件监听器
+            newgoods_gri.setOnItemClickListener((parent, view, position, id) -> {
+                Goods goods = newGoodses.get(position);
+                Log.e("HomeFragment", "新品点击 - ID: " + goods.getGoodsId());
+                Intent intent = new Intent(getContext(), ProductDetailActivity.class);
+                intent.putExtra("goodsId", String.valueOf(goods.getGoodsId()));
+                startActivity(intent);
+            });
         }
     }
 
     // 添加更新热门商品 GridView 的方法
     private void updateHotGoodsGridView() {
         if (hotGoodses != null && !hotGoodses.isEmpty()) {
-            BaseAdapter hotGoodsAdapter = new BaseAdapter() {
-                @Override
-                public int getCount() {
-                    return hotGoodses.size();
-                }
-
-                @Override
-                public Object getItem(int position) {
-                    return hotGoodses.get(position);
-                }
-
-                @Override
-                public long getItemId(int position) {
-                    return position;
-                }
-
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    if (convertView == null) {
-                        convertView = LayoutInflater.from(getContext()).inflate(R.layout.home_goods, parent, false);
-                    }
-
-                    ImageView goodsImage = convertView.findViewById(R.id.iv_goods_image);
-                    TextView goodsName = convertView.findViewById(R.id.tv_goods_name);
-                    TextView goodsPrice = convertView.findViewById(R.id.tv_goods_price);
-
-                    Goods goods = hotGoodses.get(position);
-
-                    Glide.with(getContext())
-                         .load("http://115.158.64.84:28019" + goods.getGoodsCoverImg())
-                         .placeholder(R.drawable.ic_category)
-                         .error(R.drawable.ic_menu)
-                         .into(goodsImage);
-
-                    goodsName.setText(goods.getGoodsName());
-                    goodsPrice.setText("￥" + goods.getSellingPrice());
-
-                    return convertView;
-                }
-            };
+            GoodsAdapter hotGoodsAdapter = new GoodsAdapter(getContext(), hotGoodses);
             hotgoods_gri.setAdapter(hotGoodsAdapter);
+            
+            // 添加点击事件监听器
+            hotgoods_gri.setOnItemClickListener((parent, view, position, id) -> {
+                Goods goods = hotGoodses.get(position);
+                Log.e("HomeFragment", "热门商品点击 - ID: " + goods.getGoodsId());
+                Intent intent = new Intent(getContext(), ProductDetailActivity.class);
+                intent.putExtra("goodsId", String.valueOf(goods.getGoodsId()));
+                startActivity(intent);
+            });
         }
     }
 
     // 添加更新推荐商品 GridView 的方法
     private void updateRecommendGoodsGridView() {
         if (recommendGoodses != null && !recommendGoodses.isEmpty()) {
-            BaseAdapter recommendGoodsAdapter = new BaseAdapter() {
-                @Override
-                public int getCount() {
-                    return recommendGoodses.size();
-                }
-
-                @Override
-                public Object getItem(int position) {
-                    return recommendGoodses.get(position);
-                }
-
-                @Override
-                public long getItemId(int position) {
-                    return position;
-                }
-
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    if (convertView == null) {
-                        convertView = LayoutInflater.from(getContext()).inflate(R.layout.home_goods, parent, false);
-                    }
-
-                    ImageView goodsImage = convertView.findViewById(R.id.iv_goods_image);
-                    TextView goodsName = convertView.findViewById(R.id.tv_goods_name);
-                    TextView goodsPrice = convertView.findViewById(R.id.tv_goods_price);
-
-                    Goods goods = recommendGoodses.get(position);
-
-                    Glide.with(getContext())
-                         .load("http://115.158.64.84:28019" + goods.getGoodsCoverImg())
-                         .placeholder(R.drawable.ic_category)
-                         .error(R.drawable.ic_menu)
-                         .into(goodsImage);
-
-                    goodsName.setText(goods.getGoodsName());
-                    goodsPrice.setText("￥" + goods.getSellingPrice());
-
-                    return convertView;
-                }
-            };
+            GoodsAdapter recommendGoodsAdapter = new GoodsAdapter(getContext(), recommendGoodses);
             recommendgoods_gri.setAdapter(recommendGoodsAdapter);
+            
+            // 添加点击事件监听器
+            recommendgoods_gri.setOnItemClickListener((parent, view, position, id) -> {
+                Goods goods = recommendGoodses.get(position);
+                Log.e("HomeFragment", "推荐商品点击 - ID: " + goods.getGoodsId());
+                Intent intent = new Intent(getContext(), ProductDetailActivity.class);
+                intent.putExtra("goodsId", String.valueOf(goods.getGoodsId()));
+                startActivity(intent);
+            });
         }
     }
 
