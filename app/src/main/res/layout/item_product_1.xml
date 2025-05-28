@@ -80,7 +80,7 @@
             </androidx.cardview.widget.CardView>
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 android:src="@drawable/b2"/>
 
@@ -163,4 +163,10 @@
             android:text="立即购买"
             android:textColor="@android:color/white"/>
     </LinearLayout>
+
+    <cn.zzuli.shopapp.view.TopBar
+        android:id="@+id/top_bar_account_management"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
 </RelativeLayout>

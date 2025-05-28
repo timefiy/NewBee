@@ -19,7 +19,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopApp"
         tools:targetApi="31">
-
+        <activity android:name=".ProductDetailActivity"
+            android:exported="false"/>
+        <activity android:name=".WebViewActivity"
+            android:exported="false"/>
         <activity
             android:name=".OrdersDetailsActivity"
             android:exported="false"/>
@@ -51,10 +54,6 @@
         <activity
             android:name=".CategoryActivity"
             android:exported="false" />
-        <activity
-            android:name=".WebViewActivity" 
-            android:exported="false"/>
-
         <activity
             android:name=".MainActivity"
             android:exported="true">

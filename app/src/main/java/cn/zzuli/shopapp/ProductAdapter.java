@@ -52,8 +52,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         // 使用您提供的价格数组
         holder.tvPrice.setText("¥" + String.valueOf(price[position % price.length]));
 
-
-
         // 点击事件
         holder.itemView.setOnClickListener(v -> { // 为整个itemView设置点击监听器
             Intent intent = new Intent(context, ProductAdapter.class);// 创建跳转到商品详情页的Intent
